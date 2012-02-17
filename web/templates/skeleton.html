@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<title>{% block title %}Ticket Tracker{% endblock %}</title>{% block extra_head %}{% endblock %}
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
 		<link rel="stylesheet" href="/media/css/bootstrap/bootstrap.min.css" media="all" />
 		<style type="text/css">
@@ -60,11 +62,12 @@
 		</div><!-- /.navbar -->
 		
 		<div id="tt-main" class="container-fluid{% block main_classes %}{% endblock main_classes %}">
-				{% block main %}{% endblock main %}
+			{% block main %}{% endblock main %}
 			<hr />
 			<div class="footer">
 				<p class="pull-right"><a href="#">Back to top</a></p>
 				<p>Designed and built with all the love in the world by Danijel Pancic and contributers.</p>
+				<p class="we-run">We run <a href="http://djangoproject.com/">Django {{ django_version }}</a> / <a href="http://www.python.org/">Python {{ python_version }}</a></p>
 			</div><!-- /.footer -->
 
 		</div><!--/.container -->

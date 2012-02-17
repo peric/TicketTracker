@@ -1,5 +1,5 @@
 {% load story_tags %}{% load user_tags %}<ul id="tt-board-columns">{% for column in board_columns %}
-					<li>
+					<li class="well">
 						<h4 class="tt-board">{{ column.title }}</h4>
 						<ul id="tt-backlog-list-{{ column.tag }}" class="tt-side-list">{% for story in column.get_stories %}
 							<li class="tt-story-{{ story.moscow }}{% if story.is_green %} tt-story-green{% endif %}{% cycle ' tt-odd' ' tt-even' %}">
