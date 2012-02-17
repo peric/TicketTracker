@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from bootstrap.forms import BootstrapForm, Fieldset
 from django.contrib.auth import authenticate
 from django.contrib.auth import forms as authforms
 from django.contrib.auth.models import User
@@ -15,7 +16,12 @@ from django.utils.http import int_to_base36
 import settings
 
 
-class LoginForm(forms.Form):
+class LoginForm(BootstrapForm):
+	class Meta:
+		layout = (
+			Fieldset("Log in", "email", "password", ),
+		)
+
 	email = forms.EmailField(error_messages={'invalid': 'Enter your email', 'required': 'This field is mandatory'}, label='E-mail')
 	password = forms.CharField(error_messages={'required': 'Enter your password'}, max_length=128, label='Password', widget=forms.PasswordInput)
 
@@ -52,7 +58,7 @@ class LoginForm(forms.Form):
 		return self.authenticated_user
 
 
-class PasswordResetForm(authforms.PasswordResetForm):
+class PasswordResetForm(authforms.PasswordResetForm, BootstrapForm):
 	def save(self, from_email, domain_override=None, email_template_name='registration/password_reset_email.html', use_https=False, token_generator=default_token_generator, request=None):
 		try:
 			user = User.objects.get(email=self.cleaned_data['email'])
@@ -75,6 +81,6 @@ class PasswordResetForm(authforms.PasswordResetForm):
 			pass # TODO: do something when SMTP fails, but do not draw an error page
 
 
-class SetPasswordForm(authforms.SetPasswordForm):
+class SetPasswordForm(authforms.SetPasswordForm, BootstrapForm):
 	new_password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
 	new_password2 = forms.CharField(label="Password repeated", widget=forms.PasswordInput)

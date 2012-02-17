@@ -1,0 +1,16 @@
+/* Basic */
+.nav .tt-user-dropdown .dropdown-menu {left:auto;right:10px;}
+.nav .tt-user-dropdown .dropdown-menu::after {left:auto;right:10px;}
+.nav .tt-user-dropdown .dropdown-menu::before {left:auto;right:9px;}
+.navbar .brand {font-family:'Norican', cursive;width:99px;display:block;} /* use precalculated width to avoid menu lags */
+		
+/* Board */
+#tt-board-columns {margin:2em 0 0 2em;letter-spacing:-4px;}
+#tt-board-columns li {vertical-align:top;display:inline-block;letter-spacing:normal;word-spacing:normal;width:30em;margin:0 2em 0 0;}
+#tt-board-columns li h4 {font-size:2em;font-family:'Open Sans Condensed',sans-serif;}
+#tt-board-columns li .tt-side-list {position:relative;margin:2em 0 0 0;width:27.6em;}
+#tt-board-columns li .tt-side-list li {width:25em;}
+#tt-board-columns li .tt-board-story-tasks {border-top:1px solid #999;padding:1em 0 0 0;}
+#tt-board-columns li .tt-board-story-tasks li {width:auto;font-size:1.2em;margin:0 0 .8333333em 0;display:block;}
+#tt-board-columns li .tt-board-story-actions {letter-spacing:-4px;}
+#tt-board-columns li .tt-board-story-actions li {display:inline-block;letter-spacing:normal;word-spacing:normal;margin:0 0 .41666666em 0;}
