@@ -2,28 +2,97 @@
 <html>
 	<head>
 		<title>{% block title %}Ticket Tracker{% endblock %}</title>{% block extra_head %}{% endblock %}
-		<link rel="stylesheet" type="text/css" href="/media/css/default.css" />
+		
+		<link rel="stylesheet" href="/media/css/bootstrap/bootstrap.min.css" media="all" />
+		<style type="text/css">
+		body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		.sidebar-nav {
+			padding: 9px 0;
+		}
+		
+		.nav .tt-user-dropdown .dropdown-menu::after {
+			left: auto;
+			right: 10px;
+		}
+		
+		.navbar .dropdown-menu::before {
+			left:auto;
+			right:9px;
+		}
+		
+		.nav .tt-user-dropdown .dropdown-menu {
+			left:auto;
+			right:10px;
+		}
+		</style>
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+	
+	    <!-- Le fav and touch icons -->
+		<!--link rel="shortcut icon" href="images/favicon.ico">
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"-->
+		
+		<!--link rel="stylesheet" type="text/css" href="/media/css/default.css" />
 		<link rel="stylesheet" type="text/css" href="/media/css/smoothness/jquery-ui-1.8.16.custom.css" />
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' /-->
 	</head>
 	<body>
-		<div id="tt-head"{% block head_classes %}{% endblock head_classes %}>
-			<ul>{% if user.is_authenticated %}
-				<li class="tt-head-first"><a href="{% url logout %}">Logout</a></li>
-				<li><span>Hi, <strong>{{ user.first_name }}</strong></span></li>{% else %}
-				<li><a href="{% url web.login %}">Log In</a></li>{% endif %}
-			</ul>
-			<h1><a href="{% url web.index %}">TicketTracker{% block company %}{% endblock company %}</a></h1>
-		</div>{% block sidebar %}
-		<div id="tt-sidebar">
-			{% include 'blocks/sidebar.html' %}
-		</div>{% endblock sidebar %}
-		<div id="tt-main"{% block main_classes %}{% endblock main_classes %}>
-			{% block main %}{% endblock main %}
-		</div>{% block extra_script_before %}{% endblock extra_script_before %}
+		<div id="tt-head" class="navbar navbar-fixed-top{% block head_classes %}{% endblock head_classes %}">
+			<div class="navbar-inner">
+				<div class="container">
+					<div class="pull-right">
+						<ul class="nav">
+							{% if user.is_authenticated %}
+							<li class="dropdown tt-user-dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									<i class="icon-user icon-white"></i> {{ user.username }}
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="{% url logout %}"><i class="i"></i> Log out</a></li>
+								</ul>
+							</li>
+							{% else %}
+							<li><a href="{% url web.login %}">Log In</a></li>
+							{% endif %}
+						</ul>
+					</div>
+					<a class="brand" href="{% url web.index %}">TicketTracker{% block company %}{% endblock company %}</a>
+					<ul class="nav">
+					{% if user.is_authenticated %}
+						<li{% if sidebar_selected == 'board' %} class="active"{% endif %}><a class="tt-board" href="{% url web.board %}">Board</a></li>
+						<li{% if sidebar_selected == 'mystuff' %} class="active"{% endif %}><a class="tt-mystuff" href="{% url web.my_stuff %}">My Stuff</a></li>
+						<li{% if sidebar_selected == 'bdchart' %} class="active"{% endif %}><a class="tt-bdchart" href="{% url web.burndown_chart %}">Burndown Chart</a></li>
+						<li{% if sidebar_selected == 'backlog' %} class="active"{% endif %}><a class="tt-backlog" href="{% url web.backlog %}">Backlog</a></li>
+						<li{% if sidebar_selected == 'sprint' %} class="active"{% endif %}><a class="tt-sprint" href="{% url web.sprint %}">Sprint</a></li>
+						<li{% if sidebar_selected == 'planning' %} class="active"{% endif %}><a class="tt-planning" href="{% url web.planning %}">Let's Plan</a></li>
+					{% endif %}
+					</ul>
+				</div><!-- /.container -->
+			</div><!-- /.navbar-inner -->
+		</div><!-- /.navbar -->
+		
+		<div id="tt-main" class="container{% block main_classes %}{% endblock main_classes %}">
+				{% block main %}{% endblock main %}
+			<hr />
+			<div class="footer">
+				<p class="pull-right"><a href="#">Back to top</a></p>
+				<p>Designed and built with all the love in the world by Danijel Pancic and contributers.</p>
+			</div><!-- /.footer -->
+
+		</div><!--/.container -->
+		{% block extra_script_before %}{% endblock extra_script_before %}
 		<script src="/media/js/jquery.js" type="text/javascript"></script>
 		<script src="/media/js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 		<script src="/media/js/jquery.disable.text.select.pack.js" type="text/javascript"></script>
+		<script src="/media/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 		<script src="/media/js/tickettracker.js" type="text/javascript"></script>{% block extra_script_after %}{% endblock extra_script_after %}
 	</body>
 </html>
