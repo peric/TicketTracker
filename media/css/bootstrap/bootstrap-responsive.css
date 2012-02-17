@@ -392,9 +392,10 @@
     height: 0;
   }
 }
-@media (min-width: 980px) {
+@media (min-width: 740px) {
   .nav-collapse.collapse {
     height: auto !important;
+    overflow: inherit;
   }
 }
 @media (min-width: 1200px) {
