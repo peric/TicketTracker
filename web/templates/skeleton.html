@@ -5,50 +5,31 @@
 		
 		<link rel="stylesheet" href="/media/css/bootstrap/bootstrap.min.css" media="all" />
 		<style type="text/css">
-		body {
-			padding-top: 60px;
-			padding-bottom: 40px;
-		}
-		.sidebar-nav {
-			padding: 9px 0;
-		}
-		
-		.nav .tt-user-dropdown .dropdown-menu::after {
-			left: auto;
-			right: 10px;
-		}
-		
-		.navbar .dropdown-menu::before {
-			left:auto;
-			right:9px;
-		}
-		
-		.nav .tt-user-dropdown .dropdown-menu {
-			left:auto;
-			right:10px;
-		}
+			body {padding-top:60px;padding-bottom:40px;}
 		</style>
-		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	    <!--[if lt IE 9]>
-	      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	    <![endif]-->
-	
-	    <!-- Le fav and touch icons -->
-		<!--link rel="shortcut icon" href="images/favicon.ico">
-		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"-->
-		
-		<!--link rel="stylesheet" type="text/css" href="/media/css/default.css" />
+		<link rel="stylesheet" href="/media/css/bootstrap/bootstrap-responsive.min.css" media="all" />
+		<link rel="stylesheet" type="text/css" href="/media/css/modern.css" />
 		<link rel="stylesheet" type="text/css" href="/media/css/smoothness/jquery-ui-1.8.16.custom.css" />
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' /-->
+		<link href='http://fonts.googleapis.com/css?family=Norican' rel='stylesheet' type='text/css'>
+		<!--link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' /-->
+		
+		<!--link rel="shortcut icon" href="/media/images/favicon.ico">
+		<link rel="apple-touch-icon" href="/media/images/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/media/images/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/media/images/apple-touch-icon-114x114.png"-->
 	</head>
 	<body>
-		<div id="tt-head" class="navbar navbar-fixed-top{% block head_classes %}{% endblock head_classes %}">
+		<div class="navbar navbar-fixed-top{% block head_classes %}{% endblock head_classes %}">
 			<div class="navbar-inner">
-				<div class="container">
-					<div class="pull-right">
-						<ul class="nav">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="{% url web.index %}">TicketTracker{% block company %}{% endblock company %}</a>
+					<div class="nav-collapse">
+						<ul class="nav secondary-nav pull-right">
 							{% if user.is_authenticated %}
 							<li class="dropdown tt-user-dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -63,23 +44,22 @@
 							<li><a href="{% url web.login %}">Log In</a></li>
 							{% endif %}
 						</ul>
+						{% if user.is_authenticated %}
+						<ul class="nav">
+							<li{% if sidebar_selected == 'board' %} class="active"{% endif %}><a class="tt-board" href="{% url web.board %}">Board</a></li>
+							<li{% if sidebar_selected == 'mystuff' %} class="active"{% endif %}><a class="tt-mystuff" href="{% url web.my_stuff %}">My Stuff</a></li>
+							<li{% if sidebar_selected == 'bdchart' %} class="active"{% endif %}><a class="tt-bdchart" href="{% url web.burndown_chart %}">Burndown Chart</a></li>
+							<li{% if sidebar_selected == 'backlog' %} class="active"{% endif %}><a class="tt-backlog" href="{% url web.backlog %}">Backlog</a></li>
+							<li{% if sidebar_selected == 'sprint' %} class="active"{% endif %}><a class="tt-sprint" href="{% url web.sprint %}">Sprint</a></li>
+							<li{% if sidebar_selected == 'planning' %} class="active"{% endif %}><a class="tt-planning" href="{% url web.planning %}">Let's Plan</a></li>
+						</ul>
+						{% endif %}
 					</div>
-					<a class="brand" href="{% url web.index %}">TicketTracker{% block company %}{% endblock company %}</a>
-					<ul class="nav">
-					{% if user.is_authenticated %}
-						<li{% if sidebar_selected == 'board' %} class="active"{% endif %}><a class="tt-board" href="{% url web.board %}">Board</a></li>
-						<li{% if sidebar_selected == 'mystuff' %} class="active"{% endif %}><a class="tt-mystuff" href="{% url web.my_stuff %}">My Stuff</a></li>
-						<li{% if sidebar_selected == 'bdchart' %} class="active"{% endif %}><a class="tt-bdchart" href="{% url web.burndown_chart %}">Burndown Chart</a></li>
-						<li{% if sidebar_selected == 'backlog' %} class="active"{% endif %}><a class="tt-backlog" href="{% url web.backlog %}">Backlog</a></li>
-						<li{% if sidebar_selected == 'sprint' %} class="active"{% endif %}><a class="tt-sprint" href="{% url web.sprint %}">Sprint</a></li>
-						<li{% if sidebar_selected == 'planning' %} class="active"{% endif %}><a class="tt-planning" href="{% url web.planning %}">Let's Plan</a></li>
-					{% endif %}
-					</ul>
-				</div><!-- /.container -->
+				</div><!-- /.container-fluid -->
 			</div><!-- /.navbar-inner -->
 		</div><!-- /.navbar -->
 		
-		<div id="tt-main" class="container{% block main_classes %}{% endblock main_classes %}">
+		<div id="tt-main" class="container-fluid{% block main_classes %}{% endblock main_classes %}">
 				{% block main %}{% endblock main %}
 			<hr />
 			<div class="footer">
