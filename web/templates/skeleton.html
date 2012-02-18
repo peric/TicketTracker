@@ -49,7 +49,7 @@
 						{% if user.is_authenticated %}
 						<ul class="nav">
 							<li{% if sidebar_selected == 'board' %} class="active"{% endif %}><a class="tt-board" href="{% url web.board %}">Board</a></li>
-							<li{% if sidebar_selected == 'mystuff' %} class="active"{% endif %}><a class="tt-mystuff" href="{% url web.my_stuff %}">My Stuff</a></li>
+							<li{% if sidebar_selected == 'mystuff' %} class="active"{% endif %}><a class="tt-mystuff" href="{% url web.my_stuff %}">My Stuff{% if unfinished_tickets_count %}<span class="tt-unfinished-tickets-badge">{{ unfinished_tickets_count }}</span>{% endif %}</a></li>
 							<li{% if sidebar_selected == 'bdchart' %} class="active"{% endif %}><a class="tt-bdchart" href="{% url web.burndown_chart %}">Burndown Chart</a></li>
 							<li{% if sidebar_selected == 'backlog' %} class="active"{% endif %}><a class="tt-backlog" href="{% url web.backlog %}">Backlog</a></li>
 							<li{% if sidebar_selected == 'sprint' %} class="active"{% endif %}><a class="tt-sprint" href="{% url web.sprint %}">Sprint</a></li>
@@ -67,7 +67,7 @@
 			<div class="footer">
 				<p class="pull-right"><a href="#">Back to top</a></p>
 				<p>Designed and built with all the love in the world by Danijel Pancic and contributers.</p>
-				<p class="we-run">We run <a href="http://djangoproject.com/">Django {{ django_version }}</a> / <a href="http://www.python.org/">Python {{ python_version }}</a></p>
+				<p class="we-run">We run <a href="http://djangoproject.com/">Django {{ django_version }}</a> / <a href="http://www.python.org/">Python {{ python_version }}</a> / <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2.0</a></p>
 			</div><!-- /.footer -->
 
 		</div><!--/.container -->

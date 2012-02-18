@@ -2,11 +2,36 @@
 {% block main_classes %} tt-index{% endblock main_classes %}
 {% block head_classes %} tt-index{% endblock head_classes %}
 {% block sidebar %}{% endblock sidebar %}
-{% block main %}<ul id="tt-main-dashboard">
-				<li><a class="tt-board" href="{% url web.board %}">View the board</a></li>
-				<li><a class="tt-mystuff" href="{% url web.my_stuff %}">My Stuff</a></li>
-				<li><a class="tt-bdchart" href="{% url web.burndown_chart %}">See the Burndown Chart</a></li>
-				<li><a class="tt-backlog" href="{% url web.backlog %}">Backlog</a></li>
-				<li><a class="tt-sprint" href="{% url web.sprint %}">Sprint</a></li>
-				<li><a class="tt-planning" href="{% url web.planning %}">Let's Plan</a></li>
-			</ul>{% endblock main %}
+{% block main %}
+<div class="hero-unit">
+	<h1>Welcome to TicketTracker</h1>
+	<p>Agile development tracker made right.</p>
+</div>
+<div class="row-fluid">
+	<div class="span4">
+		<h2>About TicketTracker</h2>
+		<p>TicketTracker is full featured agile development tracker which used in real business daily and that can fit well for small/mid size business. Plan your sprints, assign tasks, put people on <i class="icon-fire"></i>fire, and get things done!</p>
+	</div>
+	<div class="span4">
+		<h2>Features</h2>
+		<p>Built using open technologies, available on <a href="https://github.com/Pancho/TicketTracker/">github</a>, feel free to fork it!</p>
+		<ul>
+			<li>Sprints, tasks and <i class="icon-fire"></i>fire support.</li>
+			<li>Easy-peasy drag-n-drop tasks management</li>
+			<li>Burndown chart</li>
+			<li>Works on iPhone, iPad and Desktops without experience loss</li>
+		</ul>
+	</div>
+	<div class="span4">
+		<h2>Discover</h2>
+		<ul id="tt-main-dashboard">
+			<li><a class="tt-board" href="{% url web.board %}">View the board</a></li>
+			<li><a class="tt-mystuff" href="{% url web.my_stuff %}">My Stuff</a></li>
+			<li><a class="tt-bdchart" href="{% url web.burndown_chart %}">See the Burndown Chart</a></li>
+			<li><a class="tt-backlog" href="{% url web.backlog %}">Backlog</a></li>
+			<li><a class="tt-sprint" href="{% url web.sprint %}">Sprint</a></li>
+			<li><a class="tt-planning" href="{% url web.planning %}">Let's Plan</a></li>
+		</ul>
+	</div>
+</div>
+{% endblock main %}
