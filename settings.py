@@ -125,6 +125,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.contrib.messages.context_processors.messages',
 	'web.context_processors.django_version',
 	'web.context_processors.python_version',
+	'web.context_processors.unfinished_tickets_count',
 )
 
 TEMPLATE_DIRS = (

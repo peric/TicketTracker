@@ -288,7 +288,7 @@
     width: 714px;
   }
 }
-@media (max-width: 739px) {
+@media (max-width: 777px) {
   body {
     padding-top: 0;
   }
@@ -392,7 +392,7 @@
     height: 0;
   }
 }
-@media (min-width: 740px) {
+@media (min-width: 778px) {
   .nav-collapse.collapse {
     height: auto !important;
     overflow: inherit;
