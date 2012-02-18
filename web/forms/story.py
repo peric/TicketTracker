@@ -1,4 +1,5 @@
 from django import forms
+from bootstrap.forms import BootstrapForm, Fieldset
 from django.contrib.auth.models import User
 from storyparser.converter import Converter
 
@@ -101,17 +102,20 @@ class StoryParserForm(utils.TTForm):
 		}
 
 
-class FireForm(utils.TTForm):
+class FireForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 	sprint_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-	title = forms.CharField(max_length=128, label='Story Title')
-	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea())
-	tags = forms.CharField(max_length=128, label='Story Tags', required=False)
+	title = forms.CharField(max_length=128, label='Story Title', widget=forms.TextInput(attrs={'class': 'span8'}))
+	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea(attrs={'class': 'span8'}))
+	tags = forms.CharField(max_length=128, label='Story Tags', required=False, widget=forms.TextInput(attrs={'class': 'span8'}))
 	score = forms.IntegerField(label='Task Score', widget=forms.Select(choices=POKER_SCORES, attrs={'class': 'tt-inline-select'}))
 	owner = forms.ChoiceField(label='Employee')
 
 
 	class Meta:
+		layout = (
+			Fieldset('Add/Edit Fire Story', "id", "sprint_id", "title", "story_description", "tags", "score", "owner"),
+		)
 		exclude = ('tasks',)
 
 
