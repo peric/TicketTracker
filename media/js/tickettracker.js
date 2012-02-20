@@ -157,7 +157,7 @@ TicketTracker = (function () {
 			},
 			initialize: function () {
 //				if (navigator.userAgent.match(/iPad/i) == null) {
-//					$('.tt-side-list:not(.tt-non-collapsible, ol li)').find('ol, p, span.tt-story-score').css('display', 'none');
+					$('.tt-side-list:not(.tt-non-collapsible, ol li)').find('ol, p, span.tt-story-score').css('display', 'none');
 					$('.tt-side-list:not(.tt-non-collapsible, ol li)').undelegate().delegate('h6 a', 'click', this.toggleStoryElements);
 					this.initPlanningDND();
 					this.initBoardDND();
