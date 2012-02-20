@@ -66,10 +66,10 @@ TicketTracker = (function () {
 			toggleStoryElements: function (ev, that) {
 				var elm = $(that || this);
 				if (elm.hasClass('tt-show')) {
-					elm.closest('li').find('ol, p, span').css('display', 'none');
+					elm.closest('li').find('ol, p, span.tt-story-score').css('display', 'none');
 					elm.removeClass('tt-show');
 				} else {
-					elm.closest('li').find('ol, p, span').css('display', 'block');
+					elm.closest('li').find('ol, p, span.tt-story-score').css('display', 'block');
 					elm.addClass('tt-show');
 				}
 				ev.preventDefault();
@@ -157,7 +157,7 @@ TicketTracker = (function () {
 			},
 			initialize: function () {
 //				if (navigator.userAgent.match(/iPad/i) == null) {
-//					$('.tt-side-list:not(.tt-non-collapsible, ol li)').find('ol, p, span').css('display', 'none');
+//					$('.tt-side-list:not(.tt-non-collapsible, ol li)').find('ol, p, span.tt-story-score').css('display', 'none');
 					$('.tt-side-list:not(.tt-non-collapsible, ol li)').undelegate().delegate('h6 a', 'click', this.toggleStoryElements);
 					this.initPlanningDND();
 					this.initBoardDND();

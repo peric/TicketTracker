@@ -105,9 +105,9 @@ class StoryParserForm(utils.TTForm):
 class FireForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 	sprint_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-	title = forms.CharField(max_length=128, label='Story Title', widget=forms.TextInput(attrs={'class': 'span8'}))
-	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea(attrs={'class': 'span8'}))
-	tags = forms.CharField(max_length=128, label='Story Tags', required=False, widget=forms.TextInput(attrs={'class': 'span8'}))
+	title = forms.CharField(max_length=128, label='Story Title', widget=forms.TextInput(attrs={'class': 'span7'}))
+	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea(attrs={'class': 'span7'}))
+	tags = forms.CharField(max_length=128, label='Story Tags', required=False, widget=forms.TextInput(attrs={'class': 'span7'}))
 	score = forms.IntegerField(label='Task Score', widget=forms.Select(choices=POKER_SCORES, attrs={'class': 'tt-inline-select'}))
 	owner = forms.ChoiceField(label='Employee')
 
