@@ -21,7 +21,7 @@ POKER_SCORES = [
 	(-2, '?'),
 ]
 
-class StoryForm(utils.TTForm):
+class StoryForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 	title = forms.CharField(max_length=128, label='Story Title')
 	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea())
@@ -31,6 +31,10 @@ class StoryForm(utils.TTForm):
 	time_boxed = forms.BooleanField(label='Is Score Timeboxed?', widget=forms.CheckboxInput(attrs={'class':'tt-checkbox'}), required=False)
 	tags = forms.CharField(max_length=128, label='Story Tags', required=False)
 
+	class Meta:
+		layout = (
+			Fieldset('User story', 'id', 'title', 'story_description', 'moscow', 'is_green', 'time_boxed', 'tags'),
+		)
 
 	def setup(self, request, last_post=None, initial=None):
 		if initial:
@@ -65,10 +69,14 @@ class StoryForm(utils.TTForm):
 		}
 
 
-class StoryParserForm(utils.TTForm):
+class StoryParserForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-	story = forms.CharField(label='User Story', widget=forms.Textarea({'cols': 100, 'rows': 20, 'class': 'tt-story-textarea'}))
+	story = forms.CharField(label='User Story', widget=forms.Textarea({'cols': 100, 'rows': 15, 'class': 'span7 tt-story-textarea'}))
 
+	class Meta:
+		layout = (
+			Fieldset('Backlog', 'id', 'story'),
+		)
 
 	def setup(self, request, last_post=None, initial=None):
 		if initial:

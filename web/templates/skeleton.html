@@ -1,27 +1,29 @@
-<!DOCTYPE HTML>
+{% load captureas %}{% captureas title_capture %}{% block title %}Ticket Tracker{% endblock %}{% endcaptureas %}<!DOCTYPE HTML>
 <html>
 	<head>
-		<title>{% block title %}Ticket Tracker{% endblock %}</title>{% block extra_head %}{% endblock %}
+		<title>{{ title_capture }}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		
 		<link rel="stylesheet" href="/media/css/bootstrap/bootstrap.min.css" media="all" />
 		<style type="text/css">
-			body {padding-top:60px;padding-bottom:40px;}
+			body {padding-top:40px;padding-bottom:40px;}
+			body.tt-index {padding-top:60px;}
 		</style>
 		<link rel="stylesheet" href="/media/css/bootstrap/bootstrap-responsive.min.css" media="all" />
 		<link rel="stylesheet" type="text/css" href="/media/css/modern.css" />
 		<link rel="stylesheet" type="text/css" href="/media/css/smoothness/jquery-ui-1.8.16.custom.css" />
 		<link href='http://fonts.googleapis.com/css?family=Norican' rel='stylesheet' type='text/css'>
-		<!--link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' /-->
 		
+		<!--link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css' /-->
 		<!--link rel="shortcut icon" href="/media/images/favicon.ico">
 		<link rel="apple-touch-icon" href="/media/images/apple-touch-icon.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="/media/images/apple-touch-icon-72x72.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="/media/images/apple-touch-icon-114x114.png"-->
+		
+		{% block extra_head %}{% endblock %}
 	</head>
-	<body>
-		<div class="navbar navbar-fixed-top{% block head_classes %}{% endblock head_classes %}">
+	<body class="page-body {% block body_classes %}{% endblock %}">
+		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container-fluid">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -60,8 +62,12 @@
 				</div><!-- /.container-fluid -->
 			</div><!-- /.navbar-inner -->
 		</div><!-- /.navbar -->
-		
-		<div id="tt-main" class="container-fluid{% block main_classes %}{% endblock main_classes %}">
+		<div class="page-header-top">
+			<div class="container-fluid">
+				{% block page_header %}<h2>{{ title_capture }}</h2>{% endblock %}
+			</div>
+		</div>
+		<div id="tt-main" class="container-fluid">
 			{% block main %}{% endblock main %}
 			<hr />
 			<div class="footer">

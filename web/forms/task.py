@@ -1,4 +1,5 @@
 from django import forms
+from bootstrap.forms import BootstrapForm, Fieldset
 from django.contrib.auth.models import User
 import utils
 from web import models
@@ -19,10 +20,15 @@ POKER_SCORES = [
 	(-2, '?'),
 ]
 
-class TaskForm(utils.TTForm):
+class TaskForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 	description = forms.CharField(max_length=1024, label='Task Description', required=True, widget=forms.Textarea())
 	score = forms.IntegerField(label='Task Score', widget=forms.Select(choices=POKER_SCORES, attrs={'class': 'tt-inline-select'}))
+	
+	class Meta:
+		layout = (
+			Fieldset('id', 'description', 'score'),
+		)
 
 	def process(self, request):
 		task, created = models.Task.objects.get_or_create(id=self.cleaned_data['id'], story=models.Story.objects.get(id=request.POST.get('story_id', -1)))

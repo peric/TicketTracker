@@ -3,11 +3,11 @@
 					<span class="tt-story-score">{% if story.time_boxed %}[{% endif %}{% if story|calculate_score == -2 %}&infin;{% else %}{% if story|calculate_score == -1 %}?{% else %}{{ story|calculate_score }}{% endif %}{% endif %}{% if story.time_boxed %}]{% endif %}</span>
 					<h6><a href="{% url web.backlog_story_edit story.id %}">{% if story.is_green %}G/{% endif %}{{ story.title }}{% if story.is_burning %} <span class="label label-important">FIRE</span>{% endif %}{% if story.is_green %} <span class="label label-success">GREEN</span>{% endif %}</a></h6>
 					<p>{{ story.story_description|truncatewords:10 }}</p>
-					<ol>
-						<li><a href="{% url web.backlog_story_edit story.id %}">Edit</a></li>
-						<li><a href="{% url web.backlog_tasks story.id %}">Edit Tasks</a></li>
-						<li><a href="{% url web.backlog_duplicate_story story.id %}?return-to={% url web.backlog %}">Duplicate Story</a></li>
-						<li><a href="{% url web.backlog_story_delete story.id %}">Delete</a></li>
-					</ol>
+					<p>
+						<a href="{% url web.backlog_story_edit story.id %}" class="btn btn-mini">Edit</a>
+						<a href="{% url web.backlog_tasks story.id %}" class="btn btn-mini">Edit Tasks</a>
+						<a href="{% url web.backlog_duplicate_story story.id %}?return-to={% url web.backlog %}" class="btn btn-mini btn-warning">Duplicate Story</a>
+						<a href="{% url web.backlog_story_delete story.id %}" class="btn btn-mini btn-danger">Delete</a>
+					</p>
 				</li>{% endfor %}
 			</ul>

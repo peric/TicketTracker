@@ -1,16 +1,17 @@
-{% extends 'skeleton.html' %}{% block title %}TicketTracker - Board{% endblock title %}
-{% block main %}
-<div class="row-fluid">
-	<div class="span12" style="margin-bottom:9px;">
-		<div class="btn-toolbar pull-right" style="margin:0;">
-			<div class="btn-group">
-				<a class="btn{% if not mine_only %} active{% endif %}" href="{% url web.board %}">All Stories</a>
-				<a class="btn{% if mine_only %} active{% endif %}" href="{% url web.board_mine_only %}">My Stories</a>
-			</div>
-		</div>
-		<h2>Board{% if not current_sprint %} - No Active Sprint{% else %} for Sprint {{ current_sprint.sprint_number }}, named: {{ current_sprint.name }}{% endif %}</h2>
+{% extends 'skeleton.html' %}
+{% block title %}TicketTracker - Board{% endblock title %}
+
+{% block page_header %}
+<div class="btn-toolbar pull-right">
+	<div class="btn-group">
+		<a class="btn{% if not mine_only %} active{% endif %}" href="{% url web.board %}">All Stories</a>
+		<a class="btn{% if mine_only %} active{% endif %}" href="{% url web.board_mine_only %}">My Stories</a>
 	</div>
 </div>
+<h2>Board{% if not current_sprint %} - No Active Sprint{% else %} for Sprint {{ current_sprint.sprint_number }}, named: {{ current_sprint.name }}{% endif %}</h2>
+{% endblock %}
+
+{% block main %}
 <div class="row-fluid">
 	<div class="span12" id="tt-board">
 		{% if current_sprint %}{% include 'blocks/board_columns.html' %}{% endif %}

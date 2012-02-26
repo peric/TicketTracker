@@ -2,4 +2,5 @@
 {% block main %}
 {% include 'blocks/login.html' %}
 <p>Did you forget your password? Create new by following <a href="{% url password_reset %}">this link</a>.</p>
-{% endblock main %}{% block main_classes %} tt-login{% endblock main_classes %}
+{% endblock main %}
+{% block body_classes %}tt-login{% endblock body_classes %}
