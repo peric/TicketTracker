@@ -24,10 +24,11 @@ class TaskForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 	description = forms.CharField(max_length=1024, label='Task Description', required=True, widget=forms.Textarea())
 	score = forms.IntegerField(label='Task Score', widget=forms.Select(choices=POKER_SCORES, attrs={'class': 'tt-inline-select'}))
+	delete = forms.BooleanField(label='Delete', widget=forms.CheckboxInput())
 	
 	class Meta:
 		layout = (
-			Fieldset('id', 'description', 'score'),
+			Fieldset('TaskForm', None, 'id', 'description', 'score', 'delete'),
 		)
 
 	def process(self, request):

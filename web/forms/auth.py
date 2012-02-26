@@ -19,7 +19,7 @@ import settings
 class LoginForm(BootstrapForm):
 	class Meta:
 		layout = (
-			Fieldset("Log in", "email", "password", ),
+			Fieldset('Log in', None, 'email', 'password', ),
 		)
 
 	email = forms.EmailField(error_messages={'invalid': 'Enter your email', 'required': 'This field is mandatory'}, label='E-mail')

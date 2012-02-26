@@ -33,7 +33,7 @@ class StoryForm(utils.TTForm, BootstrapForm):
 
 	class Meta:
 		layout = (
-			Fieldset('User story', 'id', 'title', 'story_description', 'moscow', 'is_green', 'time_boxed', 'tags'),
+			Fieldset('User story', None, 'id', 'title', 'story_description', 'moscow', 'is_green', 'time_boxed', 'tags'),
 		)
 
 	def setup(self, request, last_post=None, initial=None):
@@ -75,7 +75,7 @@ class StoryParserForm(utils.TTForm, BootstrapForm):
 
 	class Meta:
 		layout = (
-			Fieldset('Backlog', 'id', 'story'),
+			Fieldset('Backlog', None, 'id', 'story'),
 		)
 
 	def setup(self, request, last_post=None, initial=None):
@@ -122,7 +122,7 @@ class FireForm(utils.TTForm, BootstrapForm):
 
 	class Meta:
 		layout = (
-			Fieldset('Add/Edit Fire Story', "id", "sprint_id", "title", "story_description", "tags", "score", "owner"),
+			Fieldset('Add/Edit Fire Story', None, 'id', 'sprint_id', 'title', 'story_description', 'tags', 'score', 'owner'),
 		)
 		exclude = ('tasks',)
 

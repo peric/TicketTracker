@@ -8,12 +8,9 @@
 				{% for field in form %}
 				{% if not field.is_hidden %}
 				<div class="control-group">
+					{{ field }}
 					<label class="control-label">{{ field.label }}</label>
-					<div class="controls">
-						{{ field|one_line }}
-						{% if field.help_text %}<p class="help-block">{{ field.help_text }}</p>{% endif %}
-					{% if field.errors|length %}{{ field.errors }}{% endif %}
-					</div>
+					
 				</div>
 				{% endif %}
 				{% endfor %}
