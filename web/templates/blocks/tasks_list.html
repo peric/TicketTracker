@@ -8,8 +8,12 @@
 				{% for field in form %}
 				{% if not field.is_hidden %}
 				<div class="control-group">
+					{% if field.name == 'DELETE' %}
+					<label class="checkbox">{{ field }} Delete</label>
+					{% else %}
 					{{ field }}
 					<label class="control-label">{{ field.label }}</label>
+					{% endif %}
 					
 				</div>
 				{% endif %}
