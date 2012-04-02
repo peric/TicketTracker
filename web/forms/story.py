@@ -1,4 +1,5 @@
 from django import forms
+from bootstrap.forms import BootstrapForm, Fieldset
 from django.contrib.auth.models import User
 from storyparser.converter import Converter
 
@@ -20,7 +21,7 @@ POKER_SCORES = [
 	(-2, '?'),
 ]
 
-class StoryForm(utils.TTForm):
+class StoryForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 	title = forms.CharField(max_length=128, label='Story Title')
 	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea())
@@ -30,6 +31,10 @@ class StoryForm(utils.TTForm):
 	time_boxed = forms.BooleanField(label='Is Score Timeboxed?', widget=forms.CheckboxInput(attrs={'class':'tt-checkbox'}), required=False)
 	tags = forms.CharField(max_length=128, label='Story Tags', required=False)
 
+	class Meta:
+		layout = (
+			Fieldset('User story', None, 'id', 'title', 'story_description', 'moscow', 'is_green', 'time_boxed', 'tags'),
+		)
 
 	def setup(self, request, last_post=None, initial=None):
 		if initial:
@@ -64,10 +69,14 @@ class StoryForm(utils.TTForm):
 		}
 
 
-class StoryParserForm(utils.TTForm):
+class StoryParserForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-	story = forms.CharField(label='User Story', widget=forms.Textarea({'cols': 100, 'rows': 20, 'class': 'tt-story-textarea'}))
+	story = forms.CharField(label='User Story', widget=forms.Textarea({'cols': 100, 'rows': 15, 'class': 'span7 tt-story-textarea'}))
 
+	class Meta:
+		layout = (
+			Fieldset('Backlog', None, 'id', 'story'),
+		)
 
 	def setup(self, request, last_post=None, initial=None):
 		if initial:
@@ -101,17 +110,20 @@ class StoryParserForm(utils.TTForm):
 		}
 
 
-class FireForm(utils.TTForm):
+class FireForm(utils.TTForm, BootstrapForm):
 	id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 	sprint_id = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-	title = forms.CharField(max_length=128, label='Story Title')
-	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea())
-	tags = forms.CharField(max_length=128, label='Story Tags', required=False)
+	title = forms.CharField(max_length=128, label='Story Title', widget=forms.TextInput(attrs={'class': 'span7'}))
+	story_description = forms.CharField(max_length=2048, label='User Story', widget=forms.Textarea(attrs={'class': 'span7'}))
+	tags = forms.CharField(max_length=128, label='Story Tags', required=False, widget=forms.TextInput(attrs={'class': 'span7'}))
 	score = forms.IntegerField(label='Task Score', widget=forms.Select(choices=POKER_SCORES, attrs={'class': 'tt-inline-select'}))
 	owner = forms.ChoiceField(label='Employee')
 
 
 	class Meta:
+		layout = (
+			Fieldset('Add/Edit Fire Story', None, 'id', 'sprint_id', 'title', 'story_description', 'tags', 'score', 'owner'),
+		)
 		exclude = ('tasks',)
 
 

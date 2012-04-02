@@ -1,6 +1,17 @@
-{% extends 'skeleton.html' %}{% block title %}TicketTracker - Backlog{% endblock title %}
-{% block main %}{% include 'blocks/backlog_list.html' %}
-			<div id="tt-backlog">
-				<h2 class="tt-backlog">Backlog</h2>
-				{% include 'blocks/story.html' %}
-			</div>{% endblock main %}
+{% extends 'skeleton.html' %}
+{% block title %}TicketTracker - Backlog{% endblock title %}
+{% block page_header %}<h2>Backlog</h2>{% endblock %}
+{% block main %}
+
+<div class="row-fluid">
+	<div class="span5" style="margin-bottom:1em;">
+		<div class="well tt-side-wrap">
+		<h4>Backlog</h4>
+		{% include 'blocks/backlog_list.html' %}
+		</div>
+	</div>
+	<div class="span7" style="margin-bottom:1em;">
+		{% include 'blocks/story.html' %}
+	</div>
+</div>
+{% endblock main %}
