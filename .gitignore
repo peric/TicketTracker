@@ -1,3 +1,7 @@
 localsettings.py
 *.pyc
 *~
+.project
+.pydevproject
+parser.out
+parsetab.py
